@@ -1,0 +1,60 @@
+﻿
+@page
+@using OdeToFood.Core
+@model OdeToFood.Pages.Restaurants.ListModel
+@{
+}
+
+<h1>Restaurants</h1>
+
+<form method="get">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="search" class="form-control" asp-for="SearchTerm" placeholder="Restaurant name">
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group">
+                <select class="form-control" asp-for="SearchCuisine" asp-items="Html.GetEnumSelectList<CuisineType>()"></select>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group">
+                @Html.DropDownListFor(l => l.SearchLocation, new SelectList(Model.Locations, "City", "City"), "All Locations", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <button class="btn btn-outline-primary" type="submit" title="Search Restaurant"><i class="fas fa-search"></i></button>
+                <a class="btn btn-outline-primary" asp-page="./Edit" type="button" title="Create New Restaurant"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Cuisine</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Restaurant restaurant in Model.Restaurants.OrderBy(r => r.Name))
+        {
+        <tr>
+            <td>@restaurant.Name</td>
+            <td>@restaurant.Location.City, @restaurant.Location.Country</td>
+            <td>@restaurant.Cuisine</td>
+            <td>
+                <a class="btn btn-info" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id" title="Details"><i class="fas fa-search-plus"></i></a>
+                <a class="btn btn-info" asp-page="./Edit" asp-route-restaurantId="@restaurant.Id" title="Edit"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-info" asp-page="./Delete" asp-route-restaurantId="@restaurant.Id" title="Delete"><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
