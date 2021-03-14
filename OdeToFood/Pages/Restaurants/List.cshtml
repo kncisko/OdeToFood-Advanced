@@ -33,28 +33,7 @@
     </div>
 </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Cuisine</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Restaurant restaurant in Model.Restaurants.OrderBy(r => r.Name))
-        {
-        <tr>
-            <td>@restaurant.Name</td>
-            <td>@restaurant.Location.City, @restaurant.Location.Country</td>
-            <td>@restaurant.Cuisine</td>
-            <td>
-                <a class="btn btn-info" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id" title="Details"><i class="fas fa-search-plus"></i></a>
-                <a class="btn btn-info" asp-page="./Edit" asp-route-restaurantId="@restaurant.Id" title="Edit"><i class="fas fa-edit"></i></a>
-                <a class="btn btn-info" asp-page="./Delete" asp-route-restaurantId="@restaurant.Id" title="Delete"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+@foreach (var restaurant in Model.Restaurants)
+{
+    <partial name="_Summary" model="restaurant" />
+}

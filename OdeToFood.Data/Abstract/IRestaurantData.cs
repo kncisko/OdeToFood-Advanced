@@ -16,6 +16,7 @@ namespace OdeToFood.Data.Abstract
         Task<Restaurant> Add(Restaurant newRestaurant);
         Restaurant Update(Restaurant updatedRestaurant);
         Restaurant Delete(Guid id);
+        int GetRestaurantsCount();
         Task<int> Commit();
     }
 }

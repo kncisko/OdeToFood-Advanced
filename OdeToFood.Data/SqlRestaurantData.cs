@@ -81,5 +81,10 @@ namespace OdeToFood.Data
         {
             return await _dbContext.SaveChangesAsync();
         }
+
+        public int GetRestaurantsCount()
+        {
+            return _dbContext.Restaurants.Count();
+        }
     }
 }

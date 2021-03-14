@@ -10,6 +10,8 @@ namespace OdeToFood.Core
         [Display(Name = "Indian")] Indian = 3,
         [Display(Name = "Japanese")] Japanese = 4,
         [Display(Name = "Mediterranean")] Mediterranean = 5,
-        [Display(Name = "Pizza")] Pizza = 6
+        [Display(Name = "Pizza")] Pizza = 6,
+        [Display(Name = "Vegan")] Vegan = 7,
+        [Display(Name = "Chinese")] Chinese = 8
     }
 }
